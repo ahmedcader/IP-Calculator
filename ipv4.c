@@ -16,7 +16,7 @@ int main(int argc, char** argv) {
 
     int address_block[4], netmask_block[4];
 
-    char address[] = "192.168.22.34/24";
+    char address[] = "128.42.0.0/21";
 
     SplitLiteralToIntArray(address, address_block, "./");
 
@@ -54,18 +54,14 @@ int main(int argc, char** argv) {
     for (i = 0; i < 4; i++) {
         wildcard_netmask_block[i] = ~netmask_block[i] & 0xFF;      
     }
-    
-    
-    
 
     printf("Address:---------------------> %d.%d.%d.%d\n", address_block[B1], address_block[B2], address_block[B3], address_block[B4]);
     printf("Network Mask:----------------> %d.%d.%d.%d => %d [CIDR]\n", netmask_block[B1], netmask_block[B2], netmask_block[B3], netmask_block[B4], address_block[CIDR]);
     printf("Wildcard Mask:---------------> %d.%d.%d.%d\n", wildcard_netmask_block[B1], wildcard_netmask_block[B2], wildcard_netmask_block[B3], wildcard_netmask_block[B4]);
-    
-    printf("=>\n");
+    printf("\n");
     printf("Network Address:-------------> %d.%d.%d.%d\n", address_block[B1] & netmask_block[B1], address_block[B2] & netmask_block[B2], address_block[B3] & netmask_block[B3], address_block[B4] & netmask_block[B4]);
     printf("Broadcast Address:-----------> %d.%d.%d.%d\n", wildcard_netmask_block[B1] | address_block[B1], wildcard_netmask_block[B2] | address_block[B2], wildcard_netmask_block[B3] | address_block[B3], wildcard_netmask_block[B4] | address_block[B4]);
-    
+    printf("\n");
     printf("Minimum Usable Address:------> %d.%d.%d.%d\n", address_block[B1] & netmask_block[B1], address_block[B2] & netmask_block[B2], address_block[B3] & netmask_block[B3], (address_block[B4] & netmask_block[B4]) + 1);
     printf("Maximum Usable Address:------> %d.%d.%d.%d\n", wildcard_netmask_block[B1] | address_block[B1], wildcard_netmask_block[B2] | address_block[B2], wildcard_netmask_block[B3] | address_block[B3], (wildcard_netmask_block[B4] | address_block[B4]) - 1);
     printf("Number of Hosts:-------------> %d\n", (int)pow(2, 32 - address_block[CIDR])-2);
