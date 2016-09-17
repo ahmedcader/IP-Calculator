@@ -65,25 +65,6 @@ int main(int argc, char** argv) {
     printf("Maximum Usable Address:------> %d.%d.%d.%d\n", wildcard_netmask_block[B1] | address_block[B1], wildcard_netmask_block[B2] | address_block[B2], wildcard_netmask_block[B3] | address_block[B3], (wildcard_netmask_block[B4] | address_block[B4]) - 1);
     printf("Number of Hosts:-------------> %d\n", (int) pow(2, 32 - address_block[CIDR]) - 2);
     printf("Total Hosts:-----------------> %d\n\n", (int) pow(2, 32 - address_block[CIDR]));
-    
-    /*
-     * +---------
-     * | SUBNET 1
-     * +---------
-     * |--- Range:          128.42.0.0 - 128.42.0.128
-     * |--- Address:        128.42.0.0
-     * |--- First Host:     128.42.0.1
-     * |--- Last Host:      128.42.0.126
-     * |--- Broadcast:      128.42.0.127
-     * +---------
-     * | SUBNET 2
-     * +---------
-     * |--- Range:          28.42.0.128 - 128.42.0.255
-     * |--- Address:        128.42.0.128
-     * |--- First Host:     128.42.0.129
-     * |--- Last Host:      128.42.0.254
-     * |--- Broadcast:      128.42.0.255
-     */
 }
 
 void splitIpToArray(char address[], int address_block[], const char *delimeters) {
